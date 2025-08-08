@@ -84,9 +84,18 @@
   animation: shine 1s ease forwards;
 }
 
+.hslider-card:not(:hover)::before {
+  animation: reverseShine 1s ease forwards;
+}
+
 @keyframes shine {
   0% { left: -75%; }
-  100% { left: 125%; }
+  100% { left: 100%; }
+}
+
+@keyframes reverseShine {
+  0% { left: 100%; }
+  100% { left: -75%; }
 }
 
 .hslider-card:hover {

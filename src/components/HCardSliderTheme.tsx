@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 import { Children, useEffect, useRef, useState } from "react";
-import "../styles/pastel-gradient.css";
+import "../styles/HCardSliderTheme.css";
 import LeftIcon from "@/assets/icons/left_metal_no_stroke.svg";
 import RightIcon from "@/assets/icons/right_metal_no_stroke.svg";
 

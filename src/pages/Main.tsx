@@ -1,6 +1,6 @@
 // src/pages/Main.tsx
 import HCardSliderTheme from "@/components/HCardSliderTheme";
-import "@/styles/pastel-gradient.css";
+import "@/styles/HCardSliderTheme.css";
 
 export default function Main() {
   return (
