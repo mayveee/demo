@@ -1,6 +1,5 @@
 :root{
   --card-w: clamp(280px, 78vw, 960px);
-  --gap: 20vw;          /* .hslider-track gap과 동일 */
   --edge-gap: calc((100vw - var(--card-w)) / 2);
   --btn-size: clamp(36px, calc(var(--edge-gap) * 0.2), 96px);
   --btn-clearance: 12px; /* 중앙 카드와 버튼 사이 여유 */
@@ -42,7 +41,7 @@
 /* 트랙/카드/버튼은 그대로 */
 .hslider-track {
   display: flex; 
-  gap: var(--gap);
+  gap: 20vw;
   padding: 10vh 30vw;
   overflow-x: auto; overflow-y: hidden;
   scroll-behavior: smooth;
