@@ -1,3 +1,5 @@
+/* src/styles/HCardSliderTheme.css */
+
 :root{
   --card-w: clamp(280px, 78vw, 960px);
   --edge-gap: calc((100vw - var(--card-w)) / 2);
@@ -17,28 +19,24 @@
 
   /* ✨ 단일 그라데이션에 4색을 연속 스톱으로 배치 */
   background:
-    /* 살짝 입체감 주는 라디얼 하이라이트 (색 영향 거의 없음) */
     radial-gradient(1200px 800px at 50% 60%, rgba(255,255,255,.25) 0%, transparent 60%),
     linear-gradient(
       160deg,
-      #ff9a9e 0%,
+      #ffacaf 0%,
       #fad0c4 28%,
       #a1c4fd 62%,
-      #c2e9fb 100%
+      #fceabb 100%
     );
 
-  /* 한 장짜리 거대한 캔버스 */
   background-size: 420vw 120vh;        /* 가로로 4.2배 */
   background-repeat: no-repeat;
 
   /* 진행도에 따라 X만 이동 (JS에서 --shiftX 세팅) */
   background-position: var(--shiftX, 0vw) 50%;
 
-  /* 부드러운 이동 */
   transition: background-position 600ms ease;
 }
 
-/* 트랙/카드/버튼은 그대로 */
 .hslider-track {
   display: flex; 
   gap: 20vw;
@@ -55,6 +53,7 @@
   flex: 0 0 var(--card-w);
   height: min(70dvh, 720px);
   scroll-snap-align: center;
+  scroll-snap-stop: always;
   padding: 28px;
   position: relative;
   overflow: hidden;
@@ -68,34 +67,16 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.hslider-card::before {
-  content: "";
+/* ⬇️ ::before 대신 실제 요소로 shine 레이어 */
+.hslider-card .shine {
   position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg, rgba(255,255,255,0.6), rgba(255,255,255,0));
-  transform: skewX(-25deg);
+  top: 0; bottom: 0;
+  left: 0; width: 72%;
   pointer-events: none;
-}
-
-.hslider-card:hover::before {
-  animation: shine 1s ease forwards;
-}
-
-.hslider-card:not(:hover)::before {
-  animation: reverseShine 1s ease forwards;
-}
-
-@keyframes shine {
-  0% { left: -75%; }
-  100% { left: 100%; }
-}
-
-@keyframes reverseShine {
-  0% { left: 100%; }
-  100% { left: -75%; }
+  background: linear-gradient(120deg, rgba(255,255,255,0.6), rgba(255,255,255,0));
+  transform: translateX(-140%) skewX(-25deg);
+  will-change: transform;
+  z-index: 1;
 }
 
 .hslider-card:hover {
@@ -117,6 +98,12 @@
   width:var(--btn-size); height:var(--btn-size);
   touch-action:manipulation;
   z-index: 3;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;      
+  -khtml-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hslider-icon-btn.left {
@@ -129,4 +116,8 @@
 
 .hslider-icon-btn img{
   width:100%; height:100%; display:block;
+}
+
+.hslider-icon-btn img:hover{
+  transform: scale(1.08);
 }
