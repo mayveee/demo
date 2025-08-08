@@ -1,3 +1,11 @@
+:root{
+  --card-w: clamp(280px, 78vw, 960px);
+  --gap: 20vw;          /* .hslider-track gap과 동일 */
+  --edge-gap: calc((100vw - var(--card-w)) / 2);
+  --btn-size: clamp(36px, calc(var(--edge-gap) * 0.2), 96px);
+  --btn-clearance: 12px; /* 중앙 카드와 버튼 사이 여유 */
+}
+
 /* 한 장짜리 초대형(420vw) 파스텔 그라데이션 캔버스 */
 .hslider-root {
   position: relative;
@@ -33,8 +41,9 @@
 
 /* 트랙/카드/버튼은 그대로 */
 .hslider-track {
-  display: flex; gap: 24px;
-  padding: 10dvh 10vw;
+  display: flex; 
+  gap: var(--gap);
+  padding: 10vh 30vw;
   overflow-x: auto; overflow-y: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -44,7 +53,7 @@
 .hslider-track::-webkit-scrollbar { display: none; }
 
 .hslider-card {
-  flex: 0 0 clamp(280px, 78vw, 960px);
+  flex: 0 0 var(--card-w);
   height: min(70dvh, 720px);
   scroll-snap-align: center;
   border-radius: 24px;
@@ -55,11 +64,33 @@
   box-shadow: 0 10px 30px rgba(0,0,0,.15);
 }
 
-.hslider-btn {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  z-index: 2; width: 48px; height: 48px; border-radius: 50%;
-  border: none; cursor: pointer; font-size: 24px;
-  background: rgba(255,255,255,0.3); backdrop-filter: blur(4px);
+.hslider-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
-.hslider-btn.left  { left: 12px; }
-.hslider-btn.right { right: 12px; }
+
+.hslider-icon-btn {
+  background: none;       
+  border: none;           
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width:var(--btn-size); height:var(--btn-size);
+  touch-action:manipulation;
+  z-index: 3;
+}
+
+.hslider-icon-btn.left {
+  left: calc( var(--edge-gap) * 0.5 );
+}
+
+.hslider-icon-btn.right {
+  right: calc( var(--edge-gap) * 0.5 );
+}
+
+.hslider-icon-btn img{
+  width:100%; height:100%; display:block;
+}

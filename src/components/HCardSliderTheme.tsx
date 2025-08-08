@@ -1,8 +1,10 @@
 import type { PropsWithChildren } from "react";
 import { Children, useEffect, useRef, useState } from "react";
 import "../styles/pastel-gradient.css";
+import LeftIcon from "@/assets/icons/left_metal_no_stroke.svg";
+import RightIcon from "@/assets/icons/right_metal_no_stroke.svg";
 
-const GAP_PX = 24;
+const GAP_PX = 40;
 
 /** 단일 420vw 그라데이션을 background-position X로만 이동 */
 export default function HCardSliderTheme({ children }: PropsWithChildren) {
@@ -55,9 +57,11 @@ export default function HCardSliderTheme({ children }: PropsWithChildren) {
   return (
     <div className="hslider-root">
       <div className="hslider-bg" ref={bgRef} aria-hidden />
-      <button className="hslider-btn left" onClick={() => scrollByOneCard("prev")} aria-label="이전">
-        &lt;
+
+      <button className="hslider-icon-btn left" onClick={() => scrollByOneCard("prev")} aria-label="이전">
+        <img src={LeftIcon} alt="이전" />
       </button>
+
       <div className="hslider-track" ref={trackRef}>
         {Children.map(children, (child, i) => (
           <section className="hslider-card" data-index={i}>
@@ -65,8 +69,9 @@ export default function HCardSliderTheme({ children }: PropsWithChildren) {
           </section>
         ))}
       </div>
-      <button className="hslider-btn right" onClick={() => scrollByOneCard("next")} aria-label="다음">
-        &gt;
+
+      <button className="hslider-icon-btn right" onClick={() => scrollByOneCard("next")} aria-label="다음">
+        <img src={RightIcon} alt="다음" />
       </button>
     </div>
   );
