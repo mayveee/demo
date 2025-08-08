@@ -1,7 +1,7 @@
 :root{
   --card-w: clamp(280px, 78vw, 960px);
   --edge-gap: calc((100vw - var(--card-w)) / 2);
-  --btn-size: clamp(36px, calc(var(--edge-gap) * 0.2), 96px);
+  --btn-size: clamp(36px, calc(var(--edge-gap) * 0.25), 96px);
   --btn-clearance: 12px; /* 중앙 카드와 버튼 사이 여유 */
 }
 
@@ -55,17 +55,45 @@
   flex: 0 0 var(--card-w);
   height: min(70dvh, 720px);
   scroll-snap-align: center;
-  border-radius: 24px;
   padding: 28px;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.18);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+  position: relative;
+  overflow: hidden;
+
+  /* glass effect */
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 24px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(14.1px);
+  -webkit-backdrop-filter: blur(14.1px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hslider-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.6), rgba(255,255,255,0));
+  transform: skewX(-25deg);
+  pointer-events: none;
+}
+
+.hslider-card:hover::before {
+  animation: shine 1s ease forwards;
+}
+
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
 }
 
 .hslider-card:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: scale(1.03);
+  backdrop-filter: blur(18.1px);
+  -webkit-backdrop-filter: blur(18.1px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 

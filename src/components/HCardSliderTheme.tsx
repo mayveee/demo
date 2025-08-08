@@ -4,17 +4,34 @@ import "../styles/pastel-gradient.css";
 import LeftIcon from "@/assets/icons/left_metal_no_stroke.svg";
 import RightIcon from "@/assets/icons/right_metal_no_stroke.svg";
 
-const GAP_PX = 40;
 
 /** 단일 420vw 그라데이션을 background-position X로만 이동 */
 export default function HCardSliderTheme({ children }: PropsWithChildren) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const bgRef    = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0); // 0..1
+  const stepRef = useRef(0);
+
+  const measureStep = () => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const first = el.querySelector<HTMLElement>(".hslider-card");
+    if (!first) return;
+
+    const style = getComputedStyle(el);
+    // flex gap은 column-gap로 읽는 게 안전 (gap이 'row col' 형태일 수도 있음)
+    const gapPx = parseFloat(style.columnGap || style.gap || "0") || 0;
+    const cardW = first.getBoundingClientRect().width;
+
+    stepRef.current = cardW + gapPx;
+  };
 
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
+    
+    measureStep();
 
     let raf = 0;
     const compute = () => {
@@ -48,10 +65,11 @@ export default function HCardSliderTheme({ children }: PropsWithChildren) {
   const scrollByOneCard = (dir: "prev" | "next") => {
     const el = trackRef.current;
     if (!el) return;
-    const first = el.querySelector<HTMLElement>(".hslider-card");
-    if (!first) return;
-    const step = first.offsetWidth + GAP_PX;
-    el.scrollTo({ left: el.scrollLeft + (dir === "next" ? step : -step), behavior: "smooth" });
+
+    if (!stepRef.current) measureStep();
+
+    const delta = dir === "next" ? stepRef.current : -stepRef.current;
+    el.scrollTo({ left: el.scrollLeft + delta, behavior: "smooth" });
   };
 
   return (
