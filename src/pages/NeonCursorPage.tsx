@@ -1,7 +1,7 @@
 // [src/pages/NeonCursorPage.tsx]
 import { useEffect } from "react";
 import { neonCursor } from "threejs-toys";
-import "@/styles/neonCursor.css";
+import "@/styles/NeonCursor.css";
 
 export default function NeonCursorPage() {
   useEffect(() => {
