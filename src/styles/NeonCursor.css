@@ -1,0 +1,39 @@
+/* [src/styles/neon-cursor.css] */
+/* 캔버스는 항상 전체화면, 이벤트 통과, 내용보다 한 단계 아래 */
+canvas[data-engine],
+canvas[data-neon-cursor] {
+  position: fixed !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  display: block !important;
+}
+
+/* 페이지 내용은 위 레이어 */
+.page {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  color: #fff;
+  min-height: 100dvh;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.page h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.page p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #eee;
+}

@@ -5,13 +5,24 @@ import { Children, useEffect, useRef, useState } from "react";
 import "../styles/HCardSliderTheme.css";
 import LeftIcon from "@/assets/icons/left_metal_no_stroke.svg";
 import RightIcon from "@/assets/icons/right_metal_no_stroke.svg";
+import { useNavigate } from "react-router-dom";
+
+
+type Props = PropsWithChildren<{
+  /** 각 카드가 이동할 경로. ex) ["/play", "/about", ...] */
+  routes?: string[];
+  /** 라우팅 대신 직접 처리하고 싶을 때 (i: 카드 인덱스) */
+  onCardClick?: (i: number) => void;
+}>;
 
 /** 단일 420vw 그라데이션을 background-position X로만 이동 */
-export default function HCardSliderTheme({ children }: PropsWithChildren) {
+export default function HCardSliderTheme({ children, routes, onCardClick }: Props) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const bgRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0); // 0..1
   const stepRef = useRef(0);
+
+  const navigate = useNavigate();
 
   // shine 애니메이션 캐시 (카드별)
   const animMap = useRef<WeakMap<HTMLElement, Animation>>(new WeakMap());
@@ -99,6 +110,12 @@ export default function HCardSliderTheme({ children }: PropsWithChildren) {
     scrollToIndex(cur + (dir === "next" ? 1 : -1));
   };
 
+  const handleCardActivate = (i: number) => {
+    if (onCardClick) return onCardClick(i);
+    const to = routes?.[i];
+    if (to) navigate(to);
+  };
+
 
   // === shine WAAPI ===
   const handleEnter: React.MouseEventHandler<HTMLElement> = (e) => {
@@ -154,6 +171,9 @@ export default function HCardSliderTheme({ children }: PropsWithChildren) {
             data-index={i}
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}
+            role="button"
+            tabIndex={0}
+            onClick={() => handleCardActivate(i)}
           >
             <span className="shine" aria-hidden />
             {child}

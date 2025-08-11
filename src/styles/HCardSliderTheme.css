@@ -17,7 +17,6 @@
 .hslider-bg {
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
 
-  /* ✨ 단일 그라데이션에 4색을 연속 스톱으로 배치 */
   background:
     radial-gradient(1200px 800px at 50% 60%, rgba(255,255,255,.25) 0%, transparent 60%),
     linear-gradient(
@@ -28,7 +27,7 @@
       #fceabb 100%
     );
 
-  background-size: 420vw 120vh;        /* 가로로 4.2배 */
+  background-size: 420vw 120vh;    
   background-repeat: no-repeat;
 
   /* 진행도에 따라 X만 이동 (JS에서 --shiftX 세팅) */
