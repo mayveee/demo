@@ -1,7 +1,7 @@
 // src/pages/Main.tsx
 import HCardSliderTheme from "@/components/HCardSliderTheme";
 import "@/styles/HCardSliderTheme.css";
-import "@/styles/neonCursor.css";
+import "@/styles/NeonCursor.css";
 
 export default function Main() {
   return (
