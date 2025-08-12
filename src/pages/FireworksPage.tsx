@@ -1,6 +1,7 @@
 // src/pages/FireworksPage.tsx
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import bgMapleUrl from "@/assets/pano/bgmaple.png";
 
 export default function FireworksPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -262,7 +263,7 @@ export default function FireworksPage() {
         style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: "url('src/assets/pano/bgmaple.png')",
+            backgroundImage: `url(${bgMapleUrl})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             zIndex: 0,
