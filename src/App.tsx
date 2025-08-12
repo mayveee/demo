@@ -2,12 +2,14 @@
 import { Routes, Route } from "react-router-dom";
 import Main from "@/pages/Main";
 import NeonCursorPage from "@/pages/NeonCursorPage";
+import FireworksPage from "@/pages/FireworksPage";
 
 export default function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
       <Route path="/neonCursor" element={<NeonCursorPage />} />
+      <Route path="/fireworks" element={<FireworksPage />} />
     </Routes>
   );
 }

@@ -6,7 +6,7 @@ import "@/styles/NeonCursor.css";
 export default function Main() {
   return (
     <>
-      <HCardSliderTheme routes={["/neonCursor"]}>
+      <HCardSliderTheme routes={["/neonCursor", "/fireworks"]}>
         <div><h2>네온 커서</h2><p>와우</p></div>
         <div><h2>불꽃 놀이</h2><p>어메이징</p></div>
         <div><h2>카드 3</h2><p>부드럽게 이어지는 패럴랙스 착시</p></div>
