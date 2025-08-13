@@ -1,6 +1,6 @@
 // src/components/OSMenuWrapper.tsx
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import MacOSDock from "@/components/MacMenubar";
 
 interface OSMenuWrapperProps {
