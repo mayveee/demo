@@ -77,7 +77,7 @@ export default function HCardSliderTheme({ children, routes, onCardClick }: Prop
   useEffect(() => {
     const bg = bgRef.current;
     if (!bg) return;
-    const totalShiftVw = 320; // 이동 가능한 총 폭
+    const totalShiftVw = 720; // 이동 가능한 총 폭
     const x = -progress * totalShiftVw; // 0 → -320vw
     bg.style.setProperty("--shiftX", `${x}vw`);
   }, [progress]);

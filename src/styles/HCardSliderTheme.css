@@ -21,13 +21,17 @@
     radial-gradient(1200px 800px at 50% 60%, rgba(255,255,255,.25) 0%, transparent 60%),
     linear-gradient(
       160deg,
-      #ffacaf 0%,
-      #fad0c4 28%,
-      #a1c4fd 62%,
-      #fceabb 100%
+      #ffacaf 0%,     /* 따뜻한 분홍빛 노을 */
+      #fad0c4 12%,    /* 살구빛 하늘 */
+      #a1c4fd 28%,    /* 연보라+하늘색 */
+      #7da6ff 42%,    /* 파스텔 딥블루 */
+      #b5e8ff 56%,    /* 연한 하늘 */
+      #c7f0ff 70%,    /* 흰 기운 도는 파스텔블루 */
+      #fceabb 85%,    /* 부드러운 파스텔 옐로 */
+      #ffe9a7 100%    /* 따뜻한 노란빛 */
     );
 
-  background-size: 420vw 120vh;    
+  background-size: 820vw 120vh;    
   background-repeat: no-repeat;
 
   /* 진행도에 따라 X만 이동 (JS에서 --shiftX 세팅) */
