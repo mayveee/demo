@@ -5,7 +5,7 @@ import NeonCursorPage from "@/pages/NeonCursorPage";
 // import FireworksPage from "@/pages/FireworksPage";
 import CirclePage from "@/pages/CirclePage";
 import NeonWallPage from "@/pages/NeonWallPage";
-import ToolbarPage from "./pages/toolbarPage";
+import ToolbarPage from "./pages/ToolbarPage";
 
 export default function AppRouter() {
   return (
