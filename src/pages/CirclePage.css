@@ -1,0 +1,45 @@
+/* src/pages/CirclePage.css */
+.circle-page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  background: #000;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1100px;
+}
+
+.circle {
+  position: absolute;
+  background: transparent;
+  width: calc(var(--i) * 4vmin);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid rgb(0, 255, 13);
+  transform-style: preserve-3d;
+  transform: rotateX(70deg) translateZ(50px);
+  animation: animate 3s ease-in-out calc(var(--i) * 0.08s) infinite;
+  box-shadow:
+    0 0 20px rgb(124, 124, 124),
+    inset 0 0 15px rgb(124, 124, 124);
+  filter: hue-rotate(0deg);
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    transform: rotateX(70deg) translateZ(50px) translateY(0);
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    transform: rotateX(70deg) translateZ(50px) translateY(-60vmin);
+    filter: hue-rotate(360deg);
+  }
+}

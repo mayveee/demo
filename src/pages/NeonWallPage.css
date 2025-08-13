@@ -1,0 +1,159 @@
+/* src/pages/NeonWallPage.css */
+
+/* If your Vite alias '@' is set to '/src', this works: */
+@font-face {
+  font-family: "NeonGoodshine";
+  src: url("@/assets/fonts/NeonGoodshine.otf") format("opentype");
+  font-display: swap;
+}
+/* If the alias doesn't resolve in CSS, import with ?url in TS and keep the
+   family name "NeonGoodshine". */
+
+* { box-sizing: border-box; }
+
+.neon-wall {
+  position: relative;
+  width: 100vw;
+  min-height: 100svh; /* safe viewport height on mobile */
+  display: grid;
+  place-items: center;
+  text-align: center;
+  align-items: center;
+  padding: 6svh 4vw;
+  background:
+    radial-gradient(120% 100% at 50% 60%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0.95) 100%),
+    url("@/assets/pano/brick-wall-texture.jpg");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  isolation: isolate;
+  font-family: "NeonGoodshine", system-ui, sans-serif;
+}
+
+/* extra vignette for stronger wall falloff */
+.neon-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    /* 상단 핑크 빛 */
+    radial-gradient(110% 65% at 50% 20%, rgba(255, 41, 155, 0.5), transparent 55%),
+    /* 상단 중앙 쪽 보랏빛 */
+    radial-gradient(90% 55% at 50% 50%, rgba(163, 24, 255, 0.5), transparent 55%),
+    /* 하단 블루 빛 */
+    radial-gradient(110% 40% at 50% 68%, rgba(102, 247, 255, 0.4), transparent 60%);
+  mix-blend-mode: screen;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+
+/* Top & bottom small labels */
+.neon-kicker,
+.neon-caption {
+  letter-spacing: 0.22em;
+  font-size: clamp(10px, 3svh, 40px);
+  color: #d7d7d7;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+/* Headline ‘NEON’ — hollow tube look */
+.neon-line {
+  margin: 0;
+  line-height: 1;
+  z-index: 1;
+}
+
+.tube {
+  display: inline-block;
+  letter-spacing: 1rem;
+  font-weight: 100;
+  position: relative;
+}
+
+.neon-fill { 
+  margin-top: clamp(-28px, -3svh, -56px);
+}
+
+/* Pink outline tube */
+.tube-pink {
+    font-size: clamp(32px ,32svw, 448px);
+    color: #fff; /* 흰색 텍스트 */
+    text-shadow:
+        0 0 6px #d23c72,
+        0 0 14px #ff4f8e,
+        0 0 28px #ff4f8e,
+        0 0 42px rgba(255, 121, 198, 0.8),
+        0 0 64px rgba(255, 121, 198, 0.6);
+    filter: drop-shadow(0 0 10px rgba(255, 121, 198, 0.45));
+    animation: flickerPink 10s infinite steps(1) both;
+    animation-delay: 0.6s; /* 시작 타이밍 분리 */
+}
+
+/* Cyan filled tube (글자색 흰색) */
+.tube-cyan {
+    font-size: clamp(14px ,14svw, 196px);
+    color: #fff; /* 흰색 텍스트 */
+    text-shadow:
+        0 0 6px #1b4bff,
+        0 0 14px #66b7ff,
+        0 0 28px #66b7ff,
+        0 0 42px rgba(64, 140, 255, 0.88),
+        0 0 64px rgba(64, 140, 255, 0.65);
+    filter: drop-shadow(0 0 12px rgba(64, 140, 255, 0.5));
+    animation: flickerBlue 8s infinite steps(1) both;
+}
+
+/* Gentle random flicker */
+@keyframes flickerPink {
+  0%, 70%   { filter: brightness(1) drop-shadow(0 0 10px rgba(255, 79, 142, 0.45)); }
+  71%       { filter: brightness(0.85) drop-shadow(0 0 6px rgba(255, 79, 142, 0.3)); }
+  72%       { filter: brightness(0.65) drop-shadow(0 0 4px rgba(255, 79, 142, 0.2)); }
+  73%       { filter: brightness(1) drop-shadow(0 0 10px rgba(255, 79, 142, 0.45)); }
+  88%       { filter: brightness(0.9) drop-shadow(0 0 8px rgba(255, 79, 142, 0.35)); }
+  89%,100%  { filter: brightness(1) drop-shadow(0 0 10px rgba(255, 79, 142, 0.45)); }
+}
+
+/* 블루 깜빡임: 더 드물고 약함 */
+@keyframes flickerBlue {
+  0%, 82% {
+    text-shadow:
+      0 0 6px #1b4bff,
+      0 0 14px #66b7ff,
+      0 0 28px #66b7ff,
+      0 0 42px rgba(64, 140, 255, 0.88),
+      0 0 64px rgba(64, 140, 255, 0.65);
+  }
+  83% {
+    text-shadow:
+      0 0 3px #1b4bff,
+      0 0 8px #66b7ff,
+      0 0 16px #66b7ff,
+      0 0 24px rgba(64, 140, 255, 0.5),
+      0 0 36px rgba(64, 140, 255, 0.3);
+  }
+  85%, 100% {
+    text-shadow:
+      0 0 6px #1b4bff,
+      0 0 14px #66b7ff,
+      0 0 28px #66b7ff,
+      0 0 42px rgba(64, 140, 255, 0.88),
+      0 0 64px rgba(64, 140, 255, 0.65);
+  }
+}
+
+/* 텍스트 드래그/선택 방지 */
+.neon-line,
+.neon-fill,
+.neon-kicker,
+.neon-caption,
+.tube {
+  user-select: none;
+  -webkit-user-select: none;   /* Safari/iOS */
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  -webkit-user-drag: none;     /* Safari에서 드래그 이미지 생성 방지 */
+  -webkit-touch-callout: none; /* iOS 길게 눌러 복사 메뉴 방지 */
+}
